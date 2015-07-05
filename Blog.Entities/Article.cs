@@ -12,21 +12,15 @@ namespace Blog.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Article
     {
-        public User()
-        {
-            this.Article = new HashSet<Article>();
-        }
-    
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public bool IsAdmin { get; set; }
-        public bool IsEnable { get; set; }
+        public int AuthorId { get; set; }
+        public string Title { get; set; }
+        public System.DateTime CreationTime { get; set; }
+        public string Content { get; set; }
+        public bool Published { get; set; }
     
-        public virtual ICollection<Article> Article { get; set; }
+        public virtual User User { get; set; }
     }
 }

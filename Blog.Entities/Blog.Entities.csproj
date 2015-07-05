@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Article.cs">
+      <DependentUpon>MyBlogEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="MyBlogEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

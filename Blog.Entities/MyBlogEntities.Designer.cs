@@ -1,4 +1,4 @@
-﻿// Default code generation is disabled for model 'C:\Users\1\Documents\Visual Studio 2012\Projects\MyBlog\Blog.Entities\MyBlogEntities.edmx'. 
+﻿// Default code generation is disabled for model 'C:\Users\1\Desktop\Blog\MyBlog\Blog.Entities\MyBlogEntities.edmx'. 
 // To enable default code generation, change the value of the 'Code Generation Strategy' designer
 // property to an alternate value. This property is available in the Properties Window when the model is
 // open in the designer.
