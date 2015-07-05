@@ -1,0 +1,14 @@
+﻿body {
+       background-color:peachpuff;
+}
+
+#header {
+    	background:darkred;
+        Font-Size:20px;
+        height: 100px;
+}
+#footer {
+        background:darkred;
+        Font-Size:20px;
+        height: 100px;
+}
