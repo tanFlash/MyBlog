@@ -10,7 +10,7 @@ using System.Data.Objects;
 
 namespace Blog.Repository
 {
-    class EFUserRepository : IUserRepository
+    public class EFUserRepository : IUserRepository
     {
         #region Fields
         private readonly string _connectionString;
@@ -47,6 +47,20 @@ namespace Blog.Repository
                 user.IsEnable = IsEnable;
                 context.SaveChanges();
             }
+        }
+
+
+        public void AddUser(User user)
+        {
+            //using (ObjectContext context = new ObjectContext(_connectionString))
+            //{
+            //    context.AddObject("User", user);
+               
+            //    context.SaveChanges();
+            //}
+            MyBlogEntities entities = new MyBlogEntities();
+            entities.User.Add(user);
+            entities.SaveChanges();
         }
     }
 }

@@ -11,5 +11,7 @@ namespace Blog.Repository
     {
         User GetUser(string login, string password);
         List<User> GetUsers();
+       // void UpdateUser();
+        void AddUser(User user);
     }
 }
