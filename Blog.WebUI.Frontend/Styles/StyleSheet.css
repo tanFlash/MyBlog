@@ -1,4 +1,42 @@
 ﻿body {
-    
+    font: "Trebuchet MS", Verdana, sans-serif;
+    background-color: #E5E4E2;
+    color: black;
+}
+
+h2
+{
+border-bottom: 3px solid #cc9900;
+font: Georgia, serif;
+color: #996600;
+}
+h3
+{
+
+font: Georgia, serif;
+color: #996600;
+}
+.button
+{
+
+background-color:#3090C7;
+color: white;
+font-size: 22px;
+font-family: Calibri;
+padding:6px 30px;
+border-bottom: 3px;
+border:none;
+border-radius:5px;
+
+}
+fieldset label
+{
+display: block;
+padding: 4px;
+}
+
+table td {
+    width:400px;
+    grid-column-align:center;
 }
 
