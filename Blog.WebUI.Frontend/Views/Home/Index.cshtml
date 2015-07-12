@@ -9,8 +9,10 @@
 
 <h2>Index</h2>
 <div>
-    
-    
+    <div>
+       <input class="button" type='button' value='Create new article' onclick='window.location = "@Url.Action("Create","Home") ";' />
+    </div>
+    <h3>List of posted articles</h3>
     <ul>
         @foreach (var article in articles)
         {

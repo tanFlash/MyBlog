@@ -10,5 +10,6 @@ namespace Blog.Repository
     public interface IArticleRepository
     {
         List <Article> GetPublished();
+        void AddArticle(Article article);
     }
 }

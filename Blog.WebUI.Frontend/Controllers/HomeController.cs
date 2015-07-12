@@ -1,4 +1,5 @@
-﻿using Blog.Repository;
+﻿using Blog.Entities;
+using Blog.Repository;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,7 +26,28 @@ namespace Blog.WebUI.Frontend.Controllers
             ViewBag.Articles = articles;
             return View();
         }
-
-       
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(Article article)
+        {
+            if (string.IsNullOrEmpty(article.Title))
+            {
+                ModelState.AddModelError("Name", "Title field is required");
+            }
+            if (ModelState.IsValid)
+            {
+                Article _article = new Article();
+                _article.Title = article.Title;
+                _article.CreationTime = DateTime.Now;
+                _article.AuthorId = 1;
+                this._articleRepository.AddArticle(_article);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }

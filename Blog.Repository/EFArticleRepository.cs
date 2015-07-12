@@ -26,5 +26,13 @@ namespace Blog.Repository
                 
             }
         }
+
+
+        public void AddArticle(Article article)
+        {
+            MyBlogEntities entities = new MyBlogEntities();
+            entities.Article.Add(article);
+            entities.SaveChanges();
+        }
     }
 }

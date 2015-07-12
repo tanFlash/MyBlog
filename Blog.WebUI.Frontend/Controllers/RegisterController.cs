@@ -28,11 +28,13 @@ namespace Blog.WebUI.Frontend.Controllers
         [HttpPost]
         public ActionResult Index(User user)
         {
-           
+            
+            
                 this._userRepository.AddUser(user);
                 return RedirectToAction("Index", "Home");
             
-           // return View();
+            
+           //return View();
         }
     }
 }
