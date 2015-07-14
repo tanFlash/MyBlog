@@ -9,10 +9,29 @@
     <meta name="viewport" content="width=device-width" />
     <title>_layout</title>
     <link href="@Url.Content("~/Styles/StyleSheet.css")" rel="stylesheet" type="text/css" />
+    
 </head>
 <body>
-    <div>
-       @RenderBody() 
+    <div id="header">
+        <h1>My Blog</h1>
+        <div id="userLabel">
+            Guest
+        </div>
+        <div id="login">
+            <input class="general-button" type='button' value='Register' onclick='window.location = "@Url.Action("Index","Register") ";' />
+            <input class="general-button" type='button' value='Login' onclick='window.location = "@Url.Action("Index","Home")    ";' />
+        </div>
+    </div>
+    <div id="mainBody">
+        <div id ="menuPlaceholder">
+            <ul class="menu">
+                <li>@Html.ActionLink("Create a new article", "Create", "Home")</li>
+                <li>@Html.ActionLink("View posted articles", "Index", "Home")</li>
+            </ul>
+        </div>
+        <div id="mainContent">
+           @RenderBody() 
+        </div>
     </div>
 </body>
 </html>

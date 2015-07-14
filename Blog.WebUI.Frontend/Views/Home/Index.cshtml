@@ -7,12 +7,10 @@
     List<Article> articles = ViewBag.Articles;
 }
 
-<h2>Index</h2>
+
 <div>
-    <div>
-       <input class="button" type='button' value='Create new article' onclick='window.location = "@Url.Action("Create","Home") ";' />
-    </div>
-    <h3>List of posted articles</h3>
+    
+    <h2>List of posted articles</h2>
     <ul>
         @foreach (var article in articles)
         {
