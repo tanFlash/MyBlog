@@ -1,4 +1,4 @@
-﻿@model Blog.Entities.User
+﻿@model Blog.WebUI.Frontend.Models.RegisterUserModel
 
 @{
     ViewBag.Title = "Index";
@@ -11,11 +11,10 @@
     <td></td>
 
    <td>
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
+
     
-    <fieldset>
-        <legend>User</legend>
+    <form method="post" enctype="multipart/form-data>
+        
 
         <div class="editor-label">
             @Html.LabelFor(model => model.FirstName)
@@ -48,14 +47,20 @@
             @Html.PasswordFor(model => model.Password)
             @Html.ValidationMessageFor(model => model.Password)
         </div>
-
-        
-
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
         <p>
             <input class="button" type="submit" value="Create" />
         </p>
-    </fieldset>
-}
+
+        
+    </form>
+
         </td>
  </tr>
     <tr></tr>

@@ -1,5 +1,6 @@
 ﻿using Blog.Entities;
 using Blog.Repository;
+using Blog.WebUI.Frontend.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -26,15 +27,20 @@ namespace Blog.WebUI.Frontend.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(User user)
+        public ActionResult Index(RegisterUserModel user)
         {
-            
-            
-                this._userRepository.AddUser(user);
+            if (ModelState.IsValid)
+            {
+                User _user = new User();
+                _user.FirstName = user.FirstName;
+                _user.LastName = user.LastName;
+                _user.Login = user.Login;
+                _user.Password = user.Password;
+                this._userRepository.AddUser(_user);
                 return RedirectToAction("Index", "Home");
-            
-            
-           //return View();
+
+            }
+           return View();
         }
     }
 }
