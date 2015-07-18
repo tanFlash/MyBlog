@@ -118,6 +118,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="Images\glyphicons-halflings.png" />
+    <Content Include="Scripts\libs\bootstrap-wysihtml\bootstrap-wysihtml5-0.0.2.js" />
+    <Content Include="Scripts\libs\bootstrap-wysihtml\wysihtml5-0.3.0_rc2.js" />
+    <Content Include="Scripts\libs\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\libs\jquery\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\libs\pages\index.js" />
+    <Content Include="Styles\bootstrap-wysihtml5-0.0.2.css" />
+    <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\StyleSheet.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -130,8 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
-    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -157,6 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\UsersArticles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\EditArticle.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

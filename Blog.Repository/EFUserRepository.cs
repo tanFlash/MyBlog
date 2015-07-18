@@ -33,10 +33,14 @@ namespace Blog.Repository
 
         public List<User> GetUsers()
         {
-            MyBlogEntities entities = new MyBlogEntities();
-            var userQuery = from user in entities.User select user;
-            List<User> users = userQuery.ToList();
-            return users;
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                return context.CreateObjectSet<User>().ToList();
+            }
+            //MyBlogEntities entities = new MyBlogEntities();
+            //var userQuery = from user in entities.User select user;
+            //List<User> users = userQuery.ToList();
+            //return users;
         }
 
         public void UpdateUser(int Id, bool IsEnable)
@@ -52,15 +56,16 @@ namespace Blog.Repository
 
         public void AddUser(User user)
         {
-            //using (ObjectContext context = new ObjectContext(_connectionString))
-            //{
-            //    context.AddObject("User", user);
-               
-            //    context.SaveChanges();
-            //}
-            MyBlogEntities entities = new MyBlogEntities();
-            entities.User.Add(user);
-            entities.SaveChanges();
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                var users = context.CreateObjectSet<User>();
+                users.AddObject(user);
+
+                context.SaveChanges();
+            }
+            //MyBlogEntities entities = new MyBlogEntities();
+            //entities.User.Add(user);
+            //entities.SaveChanges();
         }
     }
 }

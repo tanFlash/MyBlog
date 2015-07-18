@@ -6,9 +6,21 @@
 
 <html>
 <head>
+    <script type="text/javascript" src="~/Scripts/libs/jquery/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/libs/pages/index.js"></script>
+    <script src="//cdn.ckeditor.com/4.5.1/standard/ckeditor.js"></script>
+    
     <meta name="viewport" content="width=device-width" />
     <title>_layout</title>
     <link href="@Url.Content("~/Styles/StyleSheet.css")" rel="stylesheet" type="text/css" />
+
+    @*<link href="~/Styles/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="~/Scripts/libs/bootstrap/bootstrap.js"></script>
+    <script type="text/javascript" src="~/Scripts/libs/bootstrap-wysihtml/bootstrap-wysihtml5-0.0.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/libs/bootstrap-wysihtml/wysihtml5-0.3.0_rc2.js"></script>
+    <script type="text/javascript" src="~/Scripts/libs/jquery/jquery-1.7.1.min.js"></script>*@
     
 </head>
 <body>
@@ -27,6 +39,7 @@
             <ul class="menu">
                 <li>@Html.ActionLink("Create a new article", "Create", "Home")</li>
                 <li>@Html.ActionLink("View posted articles", "Index", "Home")</li>
+                <li>@Html.ActionLink("View your articles", "UsersArticles", "Home")</li>
             </ul>
         </div>
         <div id="mainContent">

@@ -1,0 +1,42 @@
+﻿@using Blog.Entities
+
+@{
+    ViewBag.Title = "UsersArticles";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+@{
+    List<Article> articles = ViewBag.UsersArticles;
+}
+
+<h2>The list of your articles</h2>
+<table>
+    <thead style="text-align:left">
+        <tr>
+            <th>Title</th>
+            <th>Creation Date</th>
+            <th>Published</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var article in articles)
+        {
+            <tr>
+                <td>@article.Title</td>
+                <td>@article.CreationTime</td>
+                @if (article.Published==true)
+                {
+                <td>Yes</td>
+                }
+                else{
+                <td>No</td>
+                }
+                <td><input class="small-button" type='button' value='Edit' onclick='window.location = "@Url.Action("EditArticle","Home",new { id = article.Id }) ";' /> </td>
+                @if (article.Published==false)
+                {
+                <td><input class="small-button" type="submit" value="Publish" /></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

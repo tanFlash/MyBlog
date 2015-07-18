@@ -47,5 +47,34 @@ namespace Blog.WebUI.Frontend.Controllers
             }
             return View();
         }
+
+        public ActionResult UsersArticles()
+        {
+            var articles = this._articleRepository.GetUsersArticle(1);
+            ViewBag.UsersArticles= articles;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult EditArticle(int? id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveFormattedText(string formattedText, int id)
+        {
+            var decodedText = Server.UrlDecode(formattedText);
+            _articleRepository.EditArticle(id, decodedText);
+
+            //string fileName = this.GetFileName();
+
+            //System.IO.File.WriteAllText(fileName, decodedText);
+
+            return Json(new { id });
+        }
+
+        
     }
 }

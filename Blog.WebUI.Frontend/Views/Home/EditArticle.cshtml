@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "EditArticle";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+@{
+    int? id = ViewBag.Id; 
+}
+    
+<h2>Editing article @id</h2>
+      @*  <script type="text/javascript">
+	$('#some-textarea').wysihtml5();
+</script>
+        <textarea id="some-textarea" placeholder="Enter text ..." rows="10" class="html-editor"></textarea>*@
+
+        
+        <textarea id="some-textarea" name="editor1"></textarea>
+        <script>
+            CKEDITOR.replace('editor1');
+        </script>
+        <div class="save-button-wrapper">
+            <input id="save-button" type="button" data-article-id="@id" class="button" value="Save changes" />
+        </div>

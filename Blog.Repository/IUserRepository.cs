@@ -13,5 +13,6 @@ namespace Blog.Repository
         List<User> GetUsers();
        // void UpdateUser();
         void AddUser(User user);
+        
     }
 }
