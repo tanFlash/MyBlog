@@ -16,10 +16,10 @@ namespace Blog.WebUI.Frontend.Controllers
         // GET: /Register/
         private readonly IUserRepository _userRepository;
 
-        public RegisterController()
+        public RegisterController(IUserRepository userRepository)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MyBlogEntities"].ConnectionString;
-            this._userRepository = new EFUserRepository(connectionString);
+            
+            this._userRepository = userRepository;
         }
         [HttpGet]
         public ActionResult Index()

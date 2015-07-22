@@ -31,7 +31,7 @@
                 else{
                 <td>No</td>
                 }
-                <td><input class="small-button" type='button' value='Edit' onclick='window.location = "@Url.Action("EditArticle","Home",new { id = article.Id }) ";' /> </td>
+                <td><input class="small-button" data-id="@article.Id" type='button' value='Edit' onclick='window.location = "@Url.Action("EditArticle","Home",new { id = article.Id, title = article.Title }) ";' /> </td>
                 @if (article.Published==false)
                 {
                 <td><input class="small-button" type="submit" value="Publish" /></td>

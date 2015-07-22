@@ -13,10 +13,10 @@ namespace Blog.WebUI.Frontend.Controllers
     public class HomeController : Controller
     {
         private readonly IArticleRepository _articleRepository;
-        public HomeController()
+        public HomeController(IArticleRepository articleRepository)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MyBlogEntities"].ConnectionString;
-            this._articleRepository = new EFArticleRepository(connectionString);
+           
+            this._articleRepository = articleRepository;
         }
         //
         // GET: /Home/
@@ -56,25 +56,40 @@ namespace Blog.WebUI.Frontend.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditArticle(int? id)
+        public ActionResult EditArticle(int? id, string title)
         {
             ViewBag.Id = id;
+            ViewBag.Title = title;
             return View();
         }
 
         [HttpPost]
         public ActionResult SaveFormattedText(string formattedText, int id)
         {
-            var decodedText = Server.UrlDecode(formattedText);
-            _articleRepository.EditArticle(id, decodedText);
+            if (formattedText != string.Empty)
+            {
+                var decodedText = Server.UrlDecode(formattedText);
+                _articleRepository.EditArticle(id, decodedText);
+                //return RedirectToAction("Index", "Home");
+            }
 
-            //string fileName = this.GetFileName();
-
-            //System.IO.File.WriteAllText(fileName, decodedText);
 
             return Json(new { id });
         }
 
-        
+        [HttpGet]
+        public ActionResult ShowArticle(int id, string title)
+        {
+            ViewBag.ArticleId = id;
+            ViewBag.ArticleTitle = title;
+            return View();
+        }
+        [HttpPost]
+        public JsonResult LoadFormattedText(int id)
+        {
+            string formattedText = _articleRepository.GetArticleById(id).Content;
+            string encodedText = Server.UrlEncode(formattedText);
+            return Json(new {formattedText = encodedText });
+        }
     }
 }

@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "ShowArticle";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+@{
+    int ArticleId = ViewBag.ArticleId;
+    string ArticleTitle = ViewBag.ArticleTitle;
+}
+<h2>Article: @ArticleTitle</h2>
+
+<hr />
+<div id="articleContent" data-id="@ArticleId"></div>
+<hr />
+<script src="~/Scripts/libs/pages/showArticle.js"></script>

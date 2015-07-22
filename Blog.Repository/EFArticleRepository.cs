@@ -64,5 +64,15 @@ namespace Blog.Repository
                 context.SaveChanges();
             }
         }
+
+
+        public Article GetArticleById(int id)
+        {
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                Article article = context.CreateObjectSet<Article>().Single(a => a.Id == id);
+                return article;
+            }
+        }
     }
 }

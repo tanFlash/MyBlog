@@ -14,7 +14,8 @@
     <ul>
         @foreach (var article in articles)
         {
-            <li>@article.Title</li>
+            <li>@Html.ActionLink(article.Title, "ShowArticle", "Home", new { title = article.Title, id = article.Id }, null)</li>
         }
+        
     </ul>
 </div>

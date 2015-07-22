@@ -4,20 +4,26 @@
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 @{
-    int? id = ViewBag.Id; 
+    int? id = ViewBag.Id;
+    string title = ViewBag.Title;
 }
     
 <h2>Editing article @id</h2>
+<script src="~/Scripts/libs/pages/index.js"></script>
       @*  <script type="text/javascript">
 	$('#some-textarea').wysihtml5();
 </script>
         <textarea id="some-textarea" placeholder="Enter text ..." rows="10" class="html-editor"></textarea>*@
 
-        
-        <textarea id="some-textarea" name="editor1"></textarea>
+       
+        <textarea id="some-textarea" data-id="@id" name="editor1"></textarea>
         <script>
             CKEDITOR.replace('editor1');
         </script>
         <div class="save-button-wrapper">
-            <input id="save-button" type="button" data-article-id="@id" class="button" value="Save changes" />
+            @using (Html.BeginForm("UsersArticles", "Home", FormMethod.Post, null))
+            {
+            <input id="save-button" type="submit" data-id="@id" class="button" value="Save changes" />
+            }
         </div>
+      
