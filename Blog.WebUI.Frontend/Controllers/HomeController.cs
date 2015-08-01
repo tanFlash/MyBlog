@@ -32,6 +32,7 @@ namespace Blog.WebUI.Frontend.Controllers
             ViewBag.Articles = articles;
             return View();
         }
+        
         //Creates a new blog topic
         [HttpGet]
         public ActionResult Create()
@@ -53,6 +54,7 @@ namespace Blog.WebUI.Frontend.Controllers
             }
             return View();
         }
+        
         //shows articles of a certain user
         public ActionResult UsersArticles()
         {
@@ -69,6 +71,7 @@ namespace Blog.WebUI.Frontend.Controllers
             ViewBag.Title = title;
             return View();
         }
+        
         //saves a formatted text of the article
         [HttpPost]
         public ActionResult SaveFormattedText(string formattedText, int id)
@@ -83,6 +86,7 @@ namespace Blog.WebUI.Frontend.Controllers
 
             return Json(new { id });
         }
+        
         //shows the selected article
         [HttpGet]
         public ActionResult ShowArticle(int id, string title)
@@ -94,6 +98,7 @@ namespace Blog.WebUI.Frontend.Controllers
             ViewBag.Users = _userRepository.GetUsers();
             return View();
         }
+        
         //loads a text that already exists into the editting field 
         [HttpPost]
         public JsonResult LoadFormattedText(int id)
@@ -103,6 +108,12 @@ namespace Blog.WebUI.Frontend.Controllers
             return Json(new {formattedText = encodedText });
         }
 
+        //Publishes an article
+        public ActionResult PublishArticle(int id)
+        {
+            _articleRepository.PublishArticle(id);
+            return RedirectToAction("UsersArticles", "Home");
+        }
        
     }
 }

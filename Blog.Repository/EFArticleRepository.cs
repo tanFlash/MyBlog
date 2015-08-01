@@ -74,5 +74,16 @@ namespace Blog.Repository
                 return article;
             }
         }
+
+
+        public void PublishArticle(int id)
+        {
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                Article article = context.CreateObjectSet<Article>().Single(a => a.Id == id);
+                article.Published = true;
+                context.SaveChanges();
+            }
+        }
     }
 }

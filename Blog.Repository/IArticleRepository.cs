@@ -14,5 +14,6 @@ namespace Blog.Repository
         List<Article> GetUsersArticle(int id);
         void EditArticle(int id, string content);
         Article GetArticleById(int id);
+        void PublishArticle(int id);
     }
 }
