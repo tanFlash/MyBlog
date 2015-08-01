@@ -1,14 +1,50 @@
-﻿@{
+﻿@using Blog.Entities
+@{
     ViewBag.Title = "ShowArticle";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 @{
     int ArticleId = ViewBag.ArticleId;
     string ArticleTitle = ViewBag.ArticleTitle;
+    List<Comment> comments = ViewBag.ArticlesComments;
+    List<User> users = ViewBag.Users;
 }
 <h2>Article: @ArticleTitle</h2>
 
 <hr />
+<div id="div1">
 <div id="articleContent" data-id="@ArticleId"></div>
 <hr />
+
 <script src="~/Scripts/libs/pages/showArticle.js"></script>
+
+<div>
+     @Html.Partial("ArticleCommentPartial")
+</div>
+
+<table id="tblcomments">
+    
+    <tbody>
+        @for (int i = comments.Count-1; i >=0 ; i-- )
+        {
+            <tr class="comments">
+               @foreach (var user in users)
+               {
+                   if (comments[i].AuthorId == user.Id)
+                   { 
+                        <td>
+                            @user.Login :
+                            <br />
+                            @comments[i].Content
+                            <hr />
+                        </td>
+                   }
+               }
+                
+                
+                
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

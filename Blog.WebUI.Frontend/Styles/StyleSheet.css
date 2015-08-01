@@ -128,3 +128,11 @@ ul.menu{
     height:100%;
     background:#E5E4E2;
 }
+
+#tblcomments {
+    width:400px;
+}
+
+tr.comments {
+    border-bottom: 1px solid #000;
+}

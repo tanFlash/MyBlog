@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -137,6 +138,7 @@
     <Content Include="Images\glyphicons-halflings.png" />
     <Content Include="Scripts\libs\jquery\jquery-1.7.1.min.js" />
     <Content Include="Scripts\libs\pages\index.js" />
+    <Content Include="Scripts\libs\pages\leaveComment.js" />
     <Content Include="Scripts\libs\pages\showArticle.js" />
     <Content Include="Styles\StyleSheet.css" />
     <Content Include="Unity.Mvc4.README.txt" />
@@ -191,6 +193,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config.install.xdt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\ArticleCommentPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

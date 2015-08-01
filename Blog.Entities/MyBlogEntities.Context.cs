@@ -27,5 +27,6 @@ namespace Blog.Entities
     
         public DbSet<User> User { get; set; }
         public DbSet<Article> Article { get; set; }
+        public DbSet<Comment> Comment { get; set; }
     }
 }

@@ -12,21 +12,14 @@ namespace Blog.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Article
+    public partial class Comment
     {
-        public Article()
-        {
-            this.Comment = new HashSet<Comment>();
-        }
-    
         public int Id { get; set; }
         public int AuthorId { get; set; }
-        public string Title { get; set; }
-        public System.DateTime CreationTime { get; set; }
+        public int ArticleId { get; set; }
         public string Content { get; set; }
-        public bool Published { get; set; }
     
+        public virtual Article Article { get; set; }
         public virtual User User { get; set; }
-        public virtual ICollection<Comment> Comment { get; set; }
     }
 }

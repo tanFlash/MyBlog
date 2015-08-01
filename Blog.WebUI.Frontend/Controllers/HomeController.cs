@@ -13,13 +13,18 @@ namespace Blog.WebUI.Frontend.Controllers
     public class HomeController : Controller
     {
         private readonly IArticleRepository _articleRepository;
-        public HomeController(IArticleRepository articleRepository)
+        private readonly ICommentRepository _commentRepository;
+        private readonly IUserRepository _userRepository;
+        public HomeController(IArticleRepository articleRepository, ICommentRepository commentRepository, IUserRepository userRepository)
         {
            
             this._articleRepository = articleRepository;
+            this._commentRepository = commentRepository;
+            this._userRepository = userRepository;
         }
         //
         // GET: /Home/
+       
         [HttpGet]
         public ActionResult Index()
         {
@@ -27,6 +32,7 @@ namespace Blog.WebUI.Frontend.Controllers
             ViewBag.Articles = articles;
             return View();
         }
+        //Creates a new blog topic
         [HttpGet]
         public ActionResult Create()
         {
@@ -47,7 +53,7 @@ namespace Blog.WebUI.Frontend.Controllers
             }
             return View();
         }
-
+        //shows articles of a certain user
         public ActionResult UsersArticles()
         {
             var articles = this._articleRepository.GetUsersArticle(1);
@@ -55,6 +61,7 @@ namespace Blog.WebUI.Frontend.Controllers
             return View();
         }
 
+        //GET for editing an article
         [HttpGet]
         public ActionResult EditArticle(int? id, string title)
         {
@@ -62,7 +69,7 @@ namespace Blog.WebUI.Frontend.Controllers
             ViewBag.Title = title;
             return View();
         }
-
+        //saves a formatted text of the article
         [HttpPost]
         public ActionResult SaveFormattedText(string formattedText, int id)
         {
@@ -76,14 +83,18 @@ namespace Blog.WebUI.Frontend.Controllers
 
             return Json(new { id });
         }
-
+        //shows the selected article
         [HttpGet]
         public ActionResult ShowArticle(int id, string title)
         {
             ViewBag.ArticleId = id;
             ViewBag.ArticleTitle = title;
+            var comments = this._commentRepository.GetArticleComments(id);
+            ViewBag.ArticlesComments = comments;
+            ViewBag.Users = _userRepository.GetUsers();
             return View();
         }
+        //loads a text that already exists into the editting field 
         [HttpPost]
         public JsonResult LoadFormattedText(int id)
         {
@@ -91,5 +102,7 @@ namespace Blog.WebUI.Frontend.Controllers
             string encodedText = Server.UrlEncode(formattedText);
             return Json(new {formattedText = encodedText });
         }
+
+       
     }
 }

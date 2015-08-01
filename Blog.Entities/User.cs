@@ -17,8 +17,9 @@ namespace Blog.Entities
         public User()
         {
             this.Article = new HashSet<Article>();
+            this.Comment = new HashSet<Comment>();
         }
-       
+    
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -28,5 +29,6 @@ namespace Blog.Entities
         public bool IsEnable { get; set; }
     
         public virtual ICollection<Article> Article { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
     }
 }

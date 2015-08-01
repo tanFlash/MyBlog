@@ -35,6 +35,7 @@ namespace Blog.WebUI.Frontend
         string connectionString = ConfigurationManager.ConnectionStrings["MyBlogEntities"].ConnectionString;
         container.RegisterType<IArticleRepository, EFArticleRepository>(new InjectionConstructor(connectionString));
         container.RegisterType<IUserRepository, EFUserRepository>(new InjectionConstructor(connectionString));
+        container.RegisterType<ICommentRepository, EFCommentRepository>(new InjectionConstructor(connectionString));
         DependencyResolver.SetResolver(new UnityDependencyResolver(container));
     }
   }

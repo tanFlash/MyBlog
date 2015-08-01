@@ -26,3 +26,15 @@ create table [User]
  );
  alter table Article add constraint PK_Article_Id primary key (Id);
  alter table Article add constraint FK_AuthorId_Id foreign key (AuthorId) references [User] (Id);
+
+ create table Comment
+ (
+ Id int not null identity (1,1),
+ AuthorId int not null,
+ ArticleId int not null,
+ Content nvarchar (2000) null
+ );
+
+ alter table Comment add constraint PK_Comment_Id primary key (Id);
+ alter table Comment add constraint FK_Author_Id foreign key (AuthorId) references [User] (Id);
+ alter table Comment add constraint FK_ArticleId_Id foreign key (ArticleId) references Article (Id);

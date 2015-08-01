@@ -1,0 +1,15 @@
+﻿
+@{
+    int id = ViewBag.ArticleId;
+}
+<script src="~/Scripts/libs/pages/leaveComment.js"></script>
+<script src="~/Scripts/libs/jquery/jquery-1.7.1.min.js"></script>
+<div>Leave your comment...</div>
+<div id="commentsPlaceholder">
+    <div>
+    <textarea id="comments-area" rows="6" cols="50"></textarea>
+    </div>
+    <div>
+        <input id="comment-button" data-id="@id" type="submit" />
+    </div>
+</div>

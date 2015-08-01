@@ -46,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFArticleRepository.cs" />
+    <Compile Include="EFCommentRepository.cs" />
     <Compile Include="EFUserRepository.cs" />
     <Compile Include="IArticleRepository.cs" />
+    <Compile Include="ICommentRepository.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

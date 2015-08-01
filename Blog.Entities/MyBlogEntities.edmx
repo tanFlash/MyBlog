@@ -7,7 +7,16 @@
     <Schema Namespace="MyBlogModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="MyBlogModelStoreContainer">
           <EntitySet Name="Article" EntityType="MyBlogModel.Store.Article" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Comment" EntityType="MyBlogModel.Store.Comment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="MyBlogModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ArticleId_Id" Association="MyBlogModel.Store.FK_ArticleId_Id">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Author_id" Association="MyBlogModel.Store.FK_Author_id">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
           <AssociationSet Name="FK_AuthorId_Id" Association="MyBlogModel.Store.FK_AuthorId_Id">
             <End Role="User" EntitySet="User" />
             <End Role="Article" EntitySet="Article" />
@@ -24,6 +33,15 @@
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="Published" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -36,6 +54,30 @@
           <Property Name="IsAdmin" Type="bit" Nullable="false" />
           <Property Name="IsEnable" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_ArticleId_Id">
+          <End Role="Article" Type="MyBlogModel.Store.Article" Multiplicity="1" />
+          <End Role="Comment" Type="MyBlogModel.Store.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Author_id">
+          <End Role="User" Type="MyBlogModel.Store.User" Multiplicity="1" />
+          <End Role="Comment" Type="MyBlogModel.Store.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AuthorId_Id">
           <End Role="User" Type="MyBlogModel.Store.User" Multiplicity="1" />
           <End Role="Article" Type="MyBlogModel.Store.Article" Multiplicity="*" />
@@ -59,6 +101,15 @@
             <End Role="User" EntitySet="User" />
             <End Role="Article" EntitySet="Article" />
           </AssociationSet>
+          <EntitySet Name="Comment" EntityType="MyBlogModel.Comment" />
+          <AssociationSet Name="FK_ArticleId_Id" Association="MyBlogModel.FK_ArticleId_Id">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Author_id" Association="MyBlogModel.FK_Author_id">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -72,6 +123,7 @@
           <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
           <Property Name="IsEnable" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Article" Relationship="MyBlogModel.FK_AuthorId_Id" FromRole="User" ToRole="Article" />
+          <NavigationProperty Name="Comment" Relationship="MyBlogModel.FK_Author_id" FromRole="User" ToRole="Comment" />
         </EntityType>
         <EntityType Name="Article">
           <Key>
@@ -84,6 +136,7 @@
           <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Published" Nullable="false" />
           <NavigationProperty Name="User" Relationship="MyBlogModel.FK_AuthorId_Id" FromRole="Article" ToRole="User" />
+          <NavigationProperty Name="Comment" Relationship="MyBlogModel.FK_ArticleId_Id" FromRole="Article" ToRole="Comment" />
         </EntityType>
         <Association Name="FK_AuthorId_Id">
           <End Type="MyBlogModel.User" Role="User" Multiplicity="1" />
@@ -93,6 +146,41 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Article">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AuthorId" Nullable="false" />
+          <Property Type="Int32" Name="ArticleId" Nullable="false" />
+          <Property Type="String" Name="Content" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Article" Relationship="MyBlogModel.FK_ArticleId_Id" FromRole="Comment" ToRole="Article" />
+          <NavigationProperty Name="User" Relationship="MyBlogModel.FK_Author_id" FromRole="Comment" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_ArticleId_Id">
+          <End Type="MyBlogModel.Article" Role="Article" Multiplicity="1" />
+          <End Type="MyBlogModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Author_id">
+          <End Type="MyBlogModel.User" Role="User" Multiplicity="1" />
+          <End Type="MyBlogModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
               <PropertyRef Name="AuthorId" />
             </Dependent>
           </ReferentialConstraint>
@@ -123,6 +211,16 @@
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="MyBlogModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
                 <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
