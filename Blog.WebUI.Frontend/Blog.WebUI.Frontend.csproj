@@ -53,6 +53,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.0.1\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -121,6 +124,7 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -142,7 +146,9 @@
     <Content Include="Scripts\libs\pages\showArticle.js" />
     <Content Include="Styles\StyleSheet.css" />
     <Content Include="Unity.Mvc4.README.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -196,6 +202,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\ArticleCommentPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error404.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error500.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
