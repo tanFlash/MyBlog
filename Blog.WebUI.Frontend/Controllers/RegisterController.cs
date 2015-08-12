@@ -42,5 +42,30 @@ namespace Blog.WebUI.Frontend.Controllers
             }
            return View();
         }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(UserLoginModel user)
+        {
+            ISecurityManager securityManager = new SecurityManager(this._userRepository);
+            
+            string login = user.Login;
+            string password = user.Password;
+            if (securityManager.Login(login, password) == true)
+            {
+                
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Register");
+            }
+            
+        }
     }
 }

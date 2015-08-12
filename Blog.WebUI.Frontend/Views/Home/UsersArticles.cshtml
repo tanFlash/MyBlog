@@ -6,9 +6,10 @@
 }
 @{
     List<Article> articles = ViewBag.UsersArticles;
+    User user = ViewBag.User;
 }
 
-<h2>The list of your articles</h2>
+<h2>The list of your articles @user.FirstName</h2>
 <table>
     <thead style="text-align:left">
         <tr>

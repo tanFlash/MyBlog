@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using NLog;
+using Blog.Repository;
+using System.Configuration;
 
 namespace Blog.WebUI
 {
@@ -28,6 +30,11 @@ namespace Blog.WebUI
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
+            string connectionString = ConfigurationManager.ConnectionStrings["MyBlogEntities"].ConnectionString;
+            IUserRepository userRepository = new EFUserRepository(connectionString);
+            ISecurityManager securityManager = new SecurityManager(userRepository);
+
+            securityManager.RefreshPrincipal();
 
         }
 

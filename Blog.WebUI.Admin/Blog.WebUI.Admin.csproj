@@ -71,6 +71,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -92,6 +93,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -120,6 +128,10 @@
     <ProjectReference Include="..\Blog.Repository\Blog.Repository.csproj">
       <Project>{d8d82d09-0872-4883-9f97-e2256987656f}</Project>
       <Name>Blog.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Blog.WebUI\Blog.WebUI.csproj">
+      <Project>{3580ff8a-8bcc-429d-85d7-555faf20aa69}</Project>
+      <Name>Blog.WebUI</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

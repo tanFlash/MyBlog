@@ -132,6 +132,7 @@
     </Compile>
     <Compile Include="Models\CreateArticleModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
+    <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +179,10 @@
       <Project>{d8d82d09-0872-4883-9f97-e2256987656f}</Project>
       <Name>Blog.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Blog.WebUI\Blog.WebUI.csproj">
+      <Project>{3580ff8a-8bcc-429d-85d7-555faf20aa69}</Project>
+      <Name>Blog.WebUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Register\Index.cshtml" />
@@ -211,6 +216,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Error500.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Register\Login.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

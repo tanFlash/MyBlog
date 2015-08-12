@@ -7,20 +7,24 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Blog.WebUI;
 
 namespace Blog.WebUI.Frontend.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly IArticleRepository _articleRepository;
         private readonly ICommentRepository _commentRepository;
         private readonly IUserRepository _userRepository;
+        private ISecurityManager _securityManager;
         public HomeController(IArticleRepository articleRepository, ICommentRepository commentRepository, IUserRepository userRepository)
         {
            
             this._articleRepository = articleRepository;
             this._commentRepository = commentRepository;
             this._userRepository = userRepository;
+            this._securityManager= new SecurityManager(this._userRepository);
         }
         //
         // GET: /Home/
@@ -58,8 +62,10 @@ namespace Blog.WebUI.Frontend.Controllers
         //shows articles of a certain user
         public ActionResult UsersArticles()
         {
+            User user = _securityManager.GetAuthUser();
             var articles = this._articleRepository.GetUsersArticle(1);
             ViewBag.UsersArticles= articles;
+            ViewBag.User = user;
             return View();
         }
 

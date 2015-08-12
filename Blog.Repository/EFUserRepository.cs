@@ -26,9 +26,14 @@ namespace Blog.Repository
             this._connectionString = ConfigurationManager.ConnectionStrings["MyBlogEntities"].ConnectionString;
         }
         #endregion
+
+
         public User GetUser(string login, string password)
         {
-            throw new NotImplementedException();
+            using (ObjectContext context = new ObjectContext(this._connectionString))
+            {
+                return context.CreateObjectSet<User>().Single(u => u.Login == login && u.Password == password);
+            }
         }
 
         public List<User> GetUsers()
@@ -37,10 +42,7 @@ namespace Blog.Repository
             {
                 return context.CreateObjectSet<User>().ToList();
             }
-            //MyBlogEntities entities = new MyBlogEntities();
-            //var userQuery = from user in entities.User select user;
-            //List<User> users = userQuery.ToList();
-            //return users;
+            
         }
 
         public void UpdateUser(int Id, bool IsEnable)
@@ -63,9 +65,16 @@ namespace Blog.Repository
 
                 context.SaveChanges();
             }
-            //MyBlogEntities entities = new MyBlogEntities();
-            //entities.User.Add(user);
-            //entities.SaveChanges();
+            
+        }
+
+
+        public User GetUser(string login)
+        {
+            using (ObjectContext context = new ObjectContext(this._connectionString))
+            {
+                return context.CreateObjectSet<User>().Single(u => u.Login == login);
+            }
         }
     }
 }
